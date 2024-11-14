@@ -62,9 +62,14 @@ class ChessBoard:
 
     def move_piece(self, start, end):
         start_row, start_col = start
+        end_row, end_col = end
         piece = self.board[start_row][start_col]
         if isinstance(piece, ChessPiece) and piece.color == self.current_turn:
-            if isinstance(piece, Goose):
+            target_piece = self.board[end_row][end_col]
+            if isinstance(target_piece, ChessPiece) and target_piece.color == piece.color:
+                print("Тупой, не ешь свои фигуры")
+                return False
+            elif isinstance(piece, Goose):
                 piece.move(start, end, self.board)
                 self.move_history.append(f"{piece} from {start} to {end}")
                 self.undo_stack.append((start, end, piece))

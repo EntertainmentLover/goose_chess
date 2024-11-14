@@ -1,6 +1,5 @@
-import random
-
 from data.ChessPieces import ChessPiece
+import random
 
 
 class Goose(ChessPiece):
